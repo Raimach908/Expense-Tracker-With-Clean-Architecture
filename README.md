@@ -1,4 +1,4 @@
-# Expense Tracker With Clean Architecture
+# Expense Tracker Website With Clean Architecture
 
 ## Table of Contents
 1. [Overview](#overview)
