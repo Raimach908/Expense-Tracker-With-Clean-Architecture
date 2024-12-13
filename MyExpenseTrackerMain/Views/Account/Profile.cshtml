@@ -1,0 +1,290 @@
+﻿@model ExpenseTracker.Core.Entities.UserEntity
+
+@{
+    string defaultProfilePicPath = "/Images/default.png";
+    string profilePicPath = defaultProfilePicPath; // Default to the default image
+
+    if (Model?.ProfilePicturePath != null && Model.ProfilePicturePath.Length > 0)
+    {
+        // Display the uploaded profile picture
+        profilePicPath = $"data:image/png;base64,{Convert.ToBase64String(Model.ProfilePicturePath)}";
+    }
+
+    string viewImagePath = profilePicPath; // This will either be default or uploaded picture
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" role="alert" id="tempMessage">
+        @TempData["Message"]
+    </div>
+}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile-container {
+        max-width: 900px;
+        margin: 40px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .profile-picture-container {
+        flex: 0 0 150px;
+        position: relative;
+    }
+
+    .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        transition: border-color 0.3s;
+    }
+
+    .edit-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s;
+    }
+
+        .edit-btn:hover {
+            background-color: #218838;
+        }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        bottom: 60px;
+        right: 10px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        z-index: 1000;
+        width: 180px; /* Ensures enough space for text */
+    }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 12px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+            .dropdown-menu a:hover {
+                background-color: #f1f1f1;
+            }
+
+    .edit-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        padding: 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-small {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        color: #fff;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s;
+    }
+
+    .btn-upload {
+        background-color: #28a745;
+    }
+
+        .btn-upload:hover {
+            background-color: #218838;
+        }
+
+    .btn-delete {
+        background-color: #dc3545;
+    }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+    .btn-logout {
+        background-color: grey;
+    }
+
+        .btn-logout:hover {
+            background-color: darkgray;
+        }
+
+    .profile-info {
+        flex: 1;
+        color: #333;
+    }
+
+        .profile-info h2 {
+            color: #28a745;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .profile-info p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .profile-info strong {
+            color: #28a745;
+        }
+
+    .btn-group-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .alert {
+        margin: 20px auto;
+        max-width: 900px;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-picture-container">
+        <img src="@profilePicPath" alt="Profile Picture" id="profilePicture" class="profile-picture" />
+
+        <button class="edit-btn" onclick="toggleDropdown()">&#x270E;</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" name="profilePicture" class="form-control" style="display:none;" id="profilePictureInput" />
+                <a href="javascript:void(0);" onclick="document.getElementById('profilePictureInput').click();">Upload New Picture</a>
+            </form>
+            <form id="deleteForm" method="post">
+                <a href="javascript:void(0);" onclick="deleteProfilePicture()">Delete Picture</a>
+            </form>
+            <!-- Use default image URL for viewing -->
+            <a href="@viewImagePath" target="_blank">View Image</a>
+        </div>
+    </div>
+
+    <div class="profile-info">
+        <h2>Profile</h2>
+        <p><strong>Username:</strong> @Model?.Username</p>
+        <p><strong>Email:</strong> @Model?.Email</p>
+        <p><strong>Phone No:</strong> @Model?.PhoneNo</p>
+        <p><strong>Created Date:</strong> @Model?.CreatedDate.ToString("dd/MM/yyyy")</p>
+
+        <div class="btn-group-row">
+            <a href="@Url.Action("UpdateProfile", "Account", new { userid = Model.UserId })" class="btn btn-small btn-upload">Edit Profile</a>
+            <a href="@Url.Action("DeleteProfile", "Account", new { userid = Model.UserId })" class="btn btn-small btn-delete">Delete Profile</a>
+            <a href="@Url.Action("Logout", "Account")" class="btn btn-small btn-logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDropdown() {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.style.display = (dropdownMenu.style.display === 'block') ? 'none' : 'block';
+    }
+
+    window.onclick = function (event) {
+        if (!event.target.matches('.edit-btn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-menu");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.style.display === 'block') {
+                    openDropdown.style.display = 'none';
+                }
+            }
+        }
+    }
+
+    document.getElementById('dropdownMenu').addEventListener('click', function (event) {
+        event.stopPropagation();
+    });
+
+    document.getElementById('profilePictureInput').addEventListener('change', function () {
+        var formData = new FormData();
+        var fileInput = document.getElementById('profilePictureInput');
+        if (fileInput.files.length > 0) {
+            formData.append('profilePicture', fileInput.files[0]);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/Account/UploadProfilePicture', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert('Profile picture updated successfully!');
+                        // Update the profile picture on the page
+                        var img = document.getElementById('profilePicture');
+                        img.src = "data:image/jpeg;base64," + response.newProfilePicturePath;
+                    } else {
+                        alert('Failed to upload profile picture.');
+                    }
+                } else {
+                    alert('An error occurred while uploading the profile picture.');
+                }
+            };
+            xhr.send(formData);
+        }
+    });
+
+    function deleteProfilePicture() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/Account/DeleteProfilePicture', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    var img = document.getElementById('profilePicture');
+                    img.src = '/Images/default.png'; // Default image or placeholder
+                    alert('Profile picture deleted successfully!');
+                } else {
+                    alert('Failed to delete profile picture.');
+                }
+            } else {
+                alert('An error occurred while deleting the profile picture.');
+            }
+        };
+        xhr.send();
+    }
+</script>

@@ -1,0 +1,279 @@
+﻿@{
+    ViewBag.Title = "Features";
+}
+<style>
+    /* Body background color */
+    body {
+        background-color: #f8f9fa;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    /* Hero section styling */
+    .hero-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #ffffff;
+        color: white;
+        border-radius: 10px;
+        margin-bottom: 60px;
+        padding: 40px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: #28a745;
+        flex-wrap: wrap; /* Allow content to wrap on smaller screens */
+    }
+
+    .hero-section .content {
+        max-width: 100%; /* Allow content to take full width on smaller screens */
+        flex: 1 1 50%;
+    }
+
+    .hero-section h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        font-weight: italic;
+    }
+
+    .hero-section p {
+        font-size: 1.2rem;
+        margin-top: 15px;
+    }
+
+    .hero-section .image {
+        max-width: 100%; /* Allow image to take full width on smaller screens */
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
+    .hero-section .image img {
+        width: 100%;
+        border-radius: 10px;
+        height: auto; /* Allow image to resize based on width */
+        object-fit: cover;
+    }
+
+    /* Feature card styling */
+    .feature-card {
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: #ffffff;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature-card .card-body {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .feature-card .card-title {
+        font-size: 1.75rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .feature-card .card-text {
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: #6c757d;
+    }
+
+    .feature-card .btn {
+        color: #ffffff;
+        background-color: #28a745;
+        border-color: #28a745;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+
+    .feature-card .btn:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .feature-card .fa {
+        font-size: 3rem;
+        color: #28a745;
+        margin-bottom: 15px;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+        background-color: #343a40;
+        color: #ffffff;
+        padding: 60px 20px;
+        text-align: center;
+        margin-top: 60px;
+        border-radius: 10px;
+    }
+
+    .cta-banner h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-banner p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .cta-banner .btn {
+        color: #ffffff;
+        background-color: #ffc107;
+        border-color: #ffc107;
+        font-weight: bold;
+        padding: 12px 25px;
+        font-size: 1.1rem;
+    }
+
+    .cta-banner .btn:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+
+    /* Testimonials Section */
+    .testimonials-section {
+        background-color: #ffffff;
+        padding: 60px 20px;
+        text-align: center;
+        margin-top: 60px;
+        border-radius: 10px;
+    }
+
+    .testimonials-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+        font-weight: bold;
+    }
+
+    .carousel-item p {
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #6c757d;
+    }
+
+    .carousel-item .carousel-caption {
+        position: static;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .carousel-item .carousel-caption h5 {
+        font-size: 1.2rem;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #28a745;
+        border-radius: 50%;
+    }
+
+    /* Ensure that the carousel controls are positioned correctly on smaller screens */
+    @@media (max-width: 767px) {
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 30px;
+            height: 30px;
+        }
+    }
+</style>
+
+<!-- Hero section -->
+<div class="hero-section">
+    <div class="content">
+        <h1><em>Manage Your Finances with Ease</em></h1>
+        <p>Explore our powerful tools designed to help you keep track of your income, expenses, and budget efficiently.</p>
+    </div>
+    <div class="image">
+        <img src="/Images/front_3.jpeg" alt="Finance Management Image">
+    </div>
+</div>
+
+<!-- Features cards -->
+<div class="container">
+    <div class="row">
+        <!-- Income Manager -->
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card feature-card">
+                <div class="card-body">
+                    <i class="fa fa-dollar-sign"></i>
+                    <h5 class="card-title">Income</h5>
+                    <p class="card-text">Track all your sources of income and manage your finances effectively.</p>
+                    <a href="/Income/Index" class="btn btn-success">Income Manager</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expense Manager -->
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card feature-card">
+                <div class="card-body">
+                    <i class="fa fa-receipt"></i>
+                    <h5 class="card-title">Expense</h5>
+                    <p class="card-text">Record and manage your expenses with detailed tracking and insights.</p>
+                    <a href="/Expense/Index" class="btn btn-success">Expense Manager</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Budget Manager -->
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card feature-card">
+                <div class="card-body">
+                    <i class="fa fa-chart-line"></i>
+                    <h5 class="card-title"> Budget</h5>
+                    <p class="card-text">Create and monitor budgets to keep your finances on track.</p>
+                    <a href="/Budget/Index" class="btn btn-success">Budget Manager</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call-to-Action Banner -->
+<div class="cta-banner">
+    <h2>Ready to Take Control of Your Finances?</h2>
+    <p>Sign up today and start managing your finances like a pro with SpendSmart!</p>
+    <a href="/Account/Register" class="btn">Get Started</a>
+</div>
+
+<!-- Testimonials Section -->
+<div id="testimonialsCarousel" class="carousel slide testimonials-section" data-ride="carousel">
+    <h2>What Our Users Are Saying</h2>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="carousel-caption">
+                <p>"SpendSmart has completely transformed the way I manage my finances. The budget manager is a game-changer!"</p>
+                <h5>- Sarah W.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="carousel-caption">
+                <p>"The expense tracking feature is so detailed and easy to use. I now have a clear view of my spending habits."</p>
+                <h5>- John D.</h5>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="carousel-caption">
+                <p>"Thanks to SpendSmart, I've been able to save more money each month by sticking to my budget."</p>
+                <h5>- Emily R.</h5>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#testimonialsCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#testimonialsCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>

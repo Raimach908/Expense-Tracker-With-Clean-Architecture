@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "SpendSmart - Home";
+}
+
+<!-- Animated Background Image -->
+<div class="background-image"></div>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Welcome to <span class="ms-2">SpendSmart</span></h1>
+        <p>Take control of your finances with our user-friendly expense tracker. Manage your spending and track your expenses with ease.</p>
+        <a href="/Features/Index" class="btn btn-success p-3">Get Started</a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <h2 class="text-center mb-5">Our Key Features</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="feature-box">
+                    <h3>Income Manager</h3>
+                    <p>Track all your sources of income and manage your finances effectively.</p>
+                    <a href="/Income/Index" class="btn btn-outline-success">Explore Income Manager</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-box">
+                    <h3>Expense Manager</h3>
+                    <p>Record and manage your expenses with detailed tracking and insights.</p>
+                    <a href="/Expense/Index" class="btn btn-outline-success">Explore Expense Manager</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-box">
+                    <h3>Budget Manager</h3>
+                    <p>Create and monitor budgets to keep your finances on track.</p>
+                    <a href="/Budget/Index" class="btn btn-outline-success">Explore Budget Manager</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section bg-light py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">What Our Users Say</h2>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"SpendSmart has completely transformed the way I manage my finances. It's incredibly easy to use and has helped me save more each month."</p>
+                    <h5>John Doe</h5>
+                    <small>Entrepreneur</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"The Budget Manager is a lifesaver! I can now plan my expenses and stay on track with my financial goals."</p>
+                    <h5>Jane Smith</h5>
+                    <small>Freelancer</small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="testimonial">
+                    <p>"Thanks to SpendSmart, I have a clearer view of my income and expenses. I highly recommend it to anyone looking to get their finances in order."</p>
+                    <h5>Mary Johnson</h5>
+                    <small>Designer</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section py-5 text-white" style="background-color: #28a745;">
+    <div class="container text-center">
+        <h2>Ready to take control of your finances?</h2>
+        <p>Join thousands of users who are already using SpendSmart to manage their money better.</p>
+        <a href="/Account/Register" class="btn btn-light p-3">Sign Up Now</a>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-5 fw-bolder text-success">Frequently Asked Questions</h2>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        How secure is my data on SpendSmart?
+                    </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Your data security is our top priority. We use industry-standard encryption to protect your financial information.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Can I link my bank accounts to SpendSmart?
+                    </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, SpendSmart allows you to link your bank accounts for seamless tracking of your transactions.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h3 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Is SpendSmart free to use?
+                    </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Yes, SpendSmart offers a free plan with essential features. We also offer premium plans with additional features for advanced users.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

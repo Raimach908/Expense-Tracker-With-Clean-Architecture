@@ -1,0 +1,80 @@
+﻿@model ExpenseTracker.Core.Entities.UserEntity
+
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    .delete-container {
+        margin: 50px auto;
+        max-width: 500px;
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .delete-container h2 {
+            color: #dc3545;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .delete-container p {
+            font-size: 1.2rem;
+            color: #333;
+            text-align: center;
+        }
+
+        .delete-container .btn {
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+    .btn-confirm-delete {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+    }
+
+        .btn-confirm-delete:hover {
+            background-color: #c82333;
+        }
+
+    .btn-cancel {
+        background-color: #6c757d;
+        border: none;
+        color: white;
+    }
+
+        .btn-cancel:hover {
+            background-color: #5a6268;
+        }
+</style>
+
+<div class="delete-container">
+    <h2>Confirm Delete</h2>
+
+    <p>Are you sure you want to delete your profile?</p>
+
+    <!-- Confirm Delete Form -->
+    <form asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" asp-for="UserId" />
+        <button type="submit" class="btn btn-confirm-delete">Yes, Delete My Profile</button>
+    </form>
+
+    <!-- Cancel Button -->
+    <a href="@Url.Action("Profile", "Account")" class="btn btn-cancel">Cancel</a>
+</div>

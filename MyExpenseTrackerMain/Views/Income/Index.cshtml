@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ExpenseTracker.Core.Entities.IncomeEntity>
+
+@{
+    ViewBag.Title = "Income Manager";
+}
+
+<div class="container mt-5">
+    <h2 class="text-success mb-4 text-center">Income Manager</h2>
+
+    <div class="d-flex justify-content-end">
+        <!-- Search bar -->
+        <form method="get" action="/Income/Index" class="form-inline mb-5">
+            <div class="input-group" style="width: 320px;">
+                <input type="text" name="search" class="form-control" placeholder="Search by Title" value="@Context.Request.Query["search"]" />
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table to display the list of incomes -->
+    <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th>Id</th>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.category</td>
+                    <td>@item.Title</td>
+                    <td>@item.Amount.ToString("C", new System.Globalization.CultureInfo("en-PK"))</td>
+                    <td>@item.Date.ToShortDateString()</td>
+                    <td>
+                        <!-- Action links with Bootstrap classes for styling -->
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Button to add new income entry -->
+    <div class="text-center mt-3 mb-5">
+        <a href="/Income/Create" class="btn btn-success btn-lg">Add New Income</a>
+    </div>
+</div>

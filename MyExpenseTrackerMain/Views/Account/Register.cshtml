@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "Register";
+}
+    <style>
+        .register-container {
+            display: flex;
+            width: 700px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 80px;
+        }
+
+        .register-image-section {
+            background-color: #28a745;
+            color: white;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+            .register-image-section img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+
+            .register-image-section h3 {
+                font-size: 1.5rem;
+                margin-bottom: 10px;
+            }
+
+            .register-image-section p {
+                font-size: 0.85rem;
+                margin-bottom: 20px;
+            }
+
+            .register-image-section button {
+                background-color: transparent;
+                border: 1px solid white;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+
+                .register-image-section button:hover {
+                    background-color: white;
+                    color: #28a745;
+                }
+
+        .register-form-section {
+            width: 55%;
+            background-color: #ffffff;
+            padding: 30px;
+        }
+
+            .register-form-section h3 {
+                font-size: 1.3rem;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+        .form-group label {
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .form-check {
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .text-center a {
+            color: #28a745;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+            .text-center a:hover {
+                text-decoration: underline;
+            }
+
+        .alert {
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+    </style>
+    <div class="container">
+        <div class="register-container mx-auto">
+            <div class="register-image-section">
+                <img src="/Images/avatar_2.jpg" alt="avatar" class="rounded-circle bg-success">
+                <h3>SpendSmart</h3>
+                <p>Manage your finances easily</p>
+                <button onclick="window.location.href='/Account/Login'">LOGIN</button>
+            </div>
+            <div class="register-form-section">
+                <h3 class="text-center" style="width: 100%;">Create a new account</h3>
+             @if (ViewBag.ErrorMessage != null)
+             {
+                 <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+             }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+
+                <!-- Registration Form -->
+            <form id="registerForm" method="post" action="/Account/Register">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone No</label>
+                    <input type="tel" class="form-control" id="phone" name="phoneNo"
+                           pattern="\d{4}-\d{7}"
+                           title="Please enter a valid phone number in the format 0310-4999222"
+                           required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="showPassword" onclick="togglePassword()">
+                        <label class="form-check-label" for="showPassword">Show Password</label>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success btn-block mt-3">Sign up</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+<script>
+    // Function to set a cookie
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // Function to get a cookie value by name
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim(); // Use trim() to remove leading/trailing spaces
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length);
+        }
+        return null;
+    }
+
+    // Function to save form data to cookies
+    function saveFormDataToCookies(formId) {
+        let form = document.getElementById(formId);
+        let elements = form.elements;
+        for (let i = 0; i < elements.length; i++) {
+            if (elements[i].type !== "submit") {
+                elements[i].addEventListener('change', function () {
+                    setCookie(elements[i].name, elements[i].value, 2);
+                });
+            }
+        }
+    }
+
+    // Function to load form data from cookies
+    function loadFormDataFromCookies(formId) {
+        let form = document.getElementById(formId);
+        let elements = form.elements;
+        for (let i = 0; i < elements.length; i++) {
+            let cookieValue = getCookie(elements[i].name);
+            if (cookieValue) {
+                elements[i].value = cookieValue;
+            }
+        }
+    }
+
+    // Function to toggle password visibility
+    function togglePassword() {
+        var passwordField = document.getElementById("password");
+        var showPasswordCheckbox = document.getElementById("showPassword");
+
+        if (showPasswordCheckbox.checked) {
+            passwordField.type = "text";
+        } else {
+            passwordField.type = "password";
+        }
+    }
+
+    // Call the functions on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        saveFormDataToCookies('registerForm');
+        loadFormDataFromCookies('registerForm');
+    });
+
+</script>

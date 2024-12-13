@@ -1,0 +1,45 @@
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.AssemblyReference.cache
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfoInputs.cache
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfo.cs
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.CoreCompileInputs.cache
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.deps.json
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.dll
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.pdb
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseT.086D7044.Up2Date
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\refint\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\MyExpenseTrackerClean\ExpenseTracker.Application\obj\Debug\net7.0\ref\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.deps.json
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.dll
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.pdb
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.AssemblyReference.cache
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfoInputs.cache
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfo.cs
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.CoreCompileInputs.cache
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseT.086D7044.Up2Date
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\refint\ExpenseTracker.Application.dll
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\MyExpenseTrackerClean - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ref\ExpenseTracker.Application.dll
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.deps.json
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.dll
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.dll
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\bin\Debug\net7.0\ExpenseTracker.Core.pdb
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.AssemblyReference.cache
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfoInputs.cache
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.AssemblyInfo.cs
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.csproj.CoreCompileInputs.cache
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseT.086D7044.Up2Date
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.dll
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\refint\ExpenseTracker.Application.dll
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ExpenseTracker.Application.pdb
+D:\Web Project\MyExpenseTrackerCleanArchitecture - Copy\ExpenseTracker.Application\obj\Debug\net7.0\ref\ExpenseTracker.Application.dll

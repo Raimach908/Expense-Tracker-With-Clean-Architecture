@@ -1,0 +1,44 @@
+﻿@model ExpenseTracker.Core.Entities.IncomeEntity
+
+@{
+    ViewBag.Title = "Add Income";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-success text-center">Add Income</h2>
+
+    <form action="/Income/Create" method="post" class="p-4 border rounded bg-white shadow-sm mx-auto" style="max-width: 500px;">
+        <!-- Category Input -->
+        <div class="form-group">
+            <label for="Category" class="text-success font-weight-bold">Category</label>
+            <input id="Category" name="Category" class="form-control border-success" placeholder="Enter category" required />
+            <span class="text-danger">@ViewBag.CategoryError</span>
+        </div>
+
+        <!-- Title Input -->
+        <div class="form-group mt-3">
+            <label for="Title" class="text-success font-weight-bold">Title</label>
+            <input id="Title" name="Title" class="form-control border-success" placeholder="Enter title" required />
+            <span class="text-danger">@ViewBag.TitleError</span>
+        </div>
+
+        <!-- Amount Input -->
+        <div class="form-group mt-3">
+            <label for="Amount" class="text-success font-weight-bold">Amount</label>
+            <input id="Amount" name="Amount" class="form-control border-success" placeholder="Enter amount" type="number" required />
+            <span class="text-danger">@ViewBag.AmountError</span>
+        </div>
+
+        <!-- Date Input -->
+        <div class="form-group mt-3">
+            <label for="Date" class="text-success font-weight-bold">Date</label>
+            <input id="Date" name="Date" class="form-control border-success" type="date" required />
+            <span class="text-danger">@ViewBag.DateError</span>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-success btn-block">Save</button>
+        </div>
+    </form>
+</div>

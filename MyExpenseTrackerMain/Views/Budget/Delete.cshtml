@@ -1,0 +1,21 @@
+﻿@model ExpenseTracker.Core.Entities.BudgetEntity
+
+@{
+    ViewBag.Title = "Delete Budget";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-danger text-center">Delete Budget</h2>
+
+    <form action="/Budget/DeleteConfirmed" method="post" class="p-4 border rounded bg-white shadow-sm mx-auto" style="max-width: 500px;">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <div class="form-group">
+            <p>Are you sure you want to delete the budget for category "@Model.category" with a limit of "@Model.Limit"?</p>
+        </div>
+
+        <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-danger btn-block">Delete</button>
+            <a href="/Budget/Index" class="btn btn-secondary btn-block">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,117 @@
+﻿@model ExpenseTracker.Core.Entities.UserEntity
+
+@{
+    ViewData["Title"] = "Update Profile";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .profile-card {
+        margin: 49px auto;
+        max-width: 400px;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        margin-top: 6px;
+    }
+
+        .profile-card h2 {
+            color: #28a745;
+            font-size: 1.75rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+    .form-control {
+        border-radius: 6px;
+    }
+
+    .btn-update {
+        background-color: #28a745;
+        color: white;
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 6px;
+        font-weight: bold;
+    }
+
+        .btn-update:hover {
+            background-color: #157347;
+        }
+
+    .validation-summary-errors {
+        color: red;
+        margin-bottom: 1rem;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    input[readonly] {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card profile-card">
+                <div class="card-body">
+                    <h2 class="card-title">Edit Profile</h2>
+
+                    <!-- Validation Summary -->
+                    <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
+
+                    <!-- Update Form -->
+                    <form asp-action="updateProfile" method="post">
+                        <input type="hidden" asp-for="UserId" />
+
+                        <div class="mb-3">
+                            <label for="userid">UserId</label>
+                            <input type="number" class="form-control" id="userid" name="UserId" value="@Model?.UserId" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="Email" value="@Model?.Email" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="Username" value="@Model?.Username" required>
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone">Phone No</label>
+                            <input type="tel" class="form-control" id="phone" name="PhoneNo" value="@Model?.PhoneNo" required>
+                            <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="createdDate">Created Date</label>
+                            <input type="datetime-local" class="form-control" id="createdDate" name="CreatedDate" value="@Model?.CreatedDate.ToString("yyyy-MM-ddTHH:mm")">
+                            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="paswd">Password</label>
+                            <input type="password" class="form-control" id="paswd" name="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-update">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

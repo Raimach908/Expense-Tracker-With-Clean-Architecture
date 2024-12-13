@@ -1,0 +1,54 @@
+﻿@model ExpenseTracker.Core.Entities.ExpenseEntity
+
+@{
+    ViewBag.Title = "Edit Expense";
+}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-success text-center">Edit Expense</h2>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    <form action="/Expense/Edit" method="post" class="p-4 border rounded bg-white shadow-sm mx-auto" style="max-width: 500px;">
+        <input type="hidden" name="Id" value="@Model.Id" />
+
+        <!-- Category Input -->
+        <div class="form-group">
+            <label for="category" class="control-label text-success font-weight-bold">Category</label>
+            <input name="category" class="form-control border-success" placeholder="Enter category" value="@Model.Category" required />
+            <span class="text-danger" asp-validation-for="Category"></span>
+        </div>
+
+        <!-- Title Input -->
+        <div class="form-group mt-3">
+            <label for="Title" class="control-label text-success font-weight-bold">Title</label>
+            <input name="Title" class="form-control border-success" placeholder="Enter Title" value="@Model.Title" required />
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+
+        <!-- Amount Input -->
+        <div class="form-group mt-3">
+            <label for="Amount" class="control-label text-success font-weight-bold">Amount</label>
+            <input name="Amount" class="form-control border-success" placeholder="Enter amount" value="@Model.Amount" required />
+            <span class="text-danger" asp-validation-for="Amount"></span>
+        </div>
+
+        <!-- Date Input -->
+        <div class="form-group mt-3">
+            <label for="Date" class="control-label text-success font-weight-bold">Date</label>
+            <input name="Date" class="form-control border-success" type="date" value="@Model.Date.ToString("yyyy-MM-dd")" required />
+            <span class="text-danger" asp-validation-for="Date"></span>
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="form-group mt-4 text-center">
+            <button type="submit" class="btn btn-success">Save</button>
+            <a href="/Expense/Index" class="btn btn-outline-secondary ml-2">Cancel</a>
+        </div>
+    </form>
+</div>

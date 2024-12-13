@@ -1,0 +1,323 @@
+﻿@{
+    ViewBag.Title = "Overview Page";
+}
+<style>
+    .container {
+        margin-top: 1px;
+    }
+
+    .overview-section {
+        padding: 60px 0;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        border-radius: 14px;
+    }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            border-radius: 20px;
+        }
+
+    .overlay-text {
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: whitesmoke;
+        text-align: center;
+        z-index: 2;
+        padding: 20px 30px;
+        width: 60%;
+        background-color: rgba(0, 0, 0, 0.3); /* Slightly darker background for better readability */
+        border-radius: 12px;
+        font-style: italic;
+        font-family: 'Roboto', sans-serif; 
+    }
+
+        .overlay-text span {
+            font-weight: bold;
+            font-style: italic;
+            color: #28a745; 
+        }
+
+        .overlay-text p {
+            font-size: 1.2rem; 
+            line-height: 1.6;
+            margin: 0;
+        }
+
+    /* Feature Highlights Section */
+    .feature {
+        margin: 40px;
+        margin-bottom: 40px;
+        padding: 20px;
+    }
+
+    .feature .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .feature-content {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+    .feature-content h3 {
+        color: #28a745;
+    }
+
+    .feature-image {
+        flex: 0 0 40%;
+        text-align: right;
+    }
+
+    .feature-image img {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid #28a745;
+        border-radius: 12px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-image img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @@media (max-width: 768px) {
+        .feature {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .feature-content, .feature-image {
+            flex: 1 1 100%;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+
+        .feature-image {
+            text-align: center;
+        }
+    }
+
+    /* Benefits Section */
+    .benefits {
+        background-color: #f9f9f9;
+        padding: 40px 0;
+    }
+
+    .benefits h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .benefits ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .benefits ul li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+    }
+
+    .benefits ul li::before {
+        content: "\2022";
+        color: #28a745;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* Usage Section */
+    .usage {
+        padding: 40px 0;
+    }
+
+    .usage h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .usage p {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    /* Testimonial Section */
+    .testimonial {
+        background-color: #e9ecef;
+        padding: 40px 0;
+        text-align: center;
+    }
+
+    .testimonial h3 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 20px;
+    }
+
+    .testimonial .testimonial-item {
+        margin-bottom: 20px;
+    }
+
+    .testimonial .testimonial-item p {
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .testimonial .testimonial-item .author {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .testimonial .testimonial-item .position {
+        font-size: 0.9rem;
+        color: #777;
+    }
+
+    /* Additional Section Styling */
+    .con {
+        background: #28a745;
+        color: white;
+        padding: 50px 30px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 30px auto;
+        max-width: 1000px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .con:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .con h2 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 25px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .con p {
+        font-size: 1.3rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+        color: whitesmoke;
+    }
+</style>
+
+<!-- Overview Section -->
+<section class="overview-section">
+    <div class="container">
+        <div class="video-container">
+            <!-- Video Element -->
+            <video autoplay muted loop>
+                <source src="/Images/video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+
+            <!-- Overlay Text -->
+            <div class="overlay-text">
+                <p><span class="fs-3">SpendSmart</span> is your go-to tool for managing your personal finances. Whether you're looking to track your spending, set financial goals, or stay on top of your budget, SpendSmart offers a comprehensive solution to meet your needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature Highlights Section -->
+    <div class="feature">
+        <div class="container d-flex align-items-center justify-content-between">
+            <div class="feature-content">
+                <h3>Feature Highlights</h3>
+                <p>SpendSmart comes packed with features designed to simplify financial management:</p>
+                <ul>
+                    <li>Track your income and expenses in real-time.</li>
+                    <li>Create and manage multiple budgets.</li>
+                    <li>Generate detailed financial reports.</li>
+                    <li>Receive personalized spending insights.</li>
+                    <li>Integrate with your bank accounts for automatic updates.</li>
+                </ul>
+            </div>
+            <div class="feature-image">
+                <img src="/Images/overview.jpg" alt="Feature Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="benefits">
+        <div class="container">
+            <h3>Why Choose SpendSmart?</h3>
+            <ul>
+                <li>Customizable budgeting options to fit your needs.</li>
+                <li>Intuitive interface that makes managing your finances easy.</li>
+                <li>Secure data storage and privacy protection.</li>
+                <li>Comprehensive reports to give you insights into your spending habits.</li>
+                <li>Access your financial data from anywhere, anytime with cloud synchronization.</li>
+                <li>Friendly customer support to assist you with any questions or issues.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Usage Section -->
+    <div class="usage">
+        <div class="container">
+            <h3>How to Get Started</h3>
+            <p>Getting started with SpendSmart is easy! Simply sign up for an account, set your financial goals, and start tracking your expenses. Our user-friendly dashboard will guide you through the process and help you make the most of your budgeting efforts.</p>
+            <p>Here’s a quick overview of the steps:</p>
+            <ol>
+                <li>Sign up for a SpendSmart account.</li>
+                <li>Link your bank accounts or manually input your financial data.</li>
+                <li>Create budgets for different categories like food, entertainment, and bills.</li>
+                <li>Start tracking your income and expenses in real-time.</li>
+                <li>Generate reports to see where your money is going and how you can save more.</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    <div class="testimonial">
+        <div class="container">
+            <h3>What Our Users Say</h3>
+            <div class="testimonial-item">
+                <p>"SpendSmart has completely transformed the way I manage my finances. The ability to track my spending in real-time has helped me stay on top of my budget and save more money each month."</p>
+                <div class="author">- John Doe</div>
+                <div class="position">CEO, Financial Solutions</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"The detailed financial reports are a game-changer. SpendSmart has made it so easy for me to see where my money is going and make better financial decisions."</p>
+                <div class="author">- Jane Smith</div>
+                <div class="position">Financial Advisor</div>
+            </div>
+        </div>
+    </div>
+</section>

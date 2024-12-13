@@ -1,0 +1,325 @@
+﻿
+@model ExpenseTracker.Core.Entities.ReportingsEntity
+@{
+    ViewBag.Title = "Reportings";
+}
+
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        border: 1px solid #28a745;
+        border-radius: 10px;
+    }
+
+    .card-header {
+        background-color: #28a745;
+        color: white;
+        font-size: 1.25rem;
+    }
+
+    .report-card {
+        background-color: #ffffff;
+        padding: 15px;
+        border: 1px solid #28a745;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .report-title {
+        color: #28a745;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 300px;
+        width: 100%;
+    }
+
+    .small-chart-container {
+        position: relative;
+        height: 150px;
+        width: 150px;
+        margin: 0 auto; /* Center the pie charts */
+    }
+
+    .row.justify-content-center {
+        justify-content: center !important;
+    }
+
+    @@media (min-width: 768px) {
+        .small-chart-container {
+            height: 180px;
+            width: 180px;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .small-chart-container {
+            height: 200px;
+            width: 200px;
+        }
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <h1 class="text-center text-success mb-4">Reporting</h1>
+
+    <!-- Total Income, Expense, Balance Section -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Total Income</div>
+                <div class="card-body">
+                    <p class="report-value" id="totalIncome"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Total Expense</div>
+                <div class="card-body">
+                    <p class="report-value" id="totalExpense"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">Total Balance</div>
+                <div class="card-body">
+                    <p class="report-value" id="totalBalance"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Last Income, Expense Section -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Last Income</div>
+                <div class="card-body">
+                    <p class="report-value" id="lastIncome">@Model.LastIncome</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Last Expense</div>
+                <div class="card-body">
+                    <p class="report-value" id="lastExpense">@Model.LastExpense</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reporting Section -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="report-card">
+                <h3 class="report-title">Monthly Report</h3>
+                <canvas id="monthlyChart" class="chart-container"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="report-card">
+                <h3 class="report-title">Yearly Report</h3>
+                <canvas id="yearlyChart" class="chart-container"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="report-card">
+                <h3 class="report-title">Daily Report</h3>
+                <canvas id="dailyChart" class="chart-container"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Charts Section -->
+    <div class="row mt-4 justify-content-center">
+        <div class="col-md-4 col-lg-3">
+            <div class="report-card">
+                <h3 class="report-title">Income Distribution</h3>
+                <canvas id="incomePieChart" class="small-chart-container"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <div class="report-card">
+                <h3 class="report-title">Expense Distribution</h3>
+                <canvas id="expensePieChart" class="small-chart-container"></canvas>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <div class="report-card">
+                <h3 class="report-title">Savings Distribution</h3>
+                <canvas id="savingsPieChart" class="small-chart-container"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Format number as Pakistani Rupees
+    function formatCurrency(amount) {
+        return `Rs. ${amount.toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    // Set formatted values
+    document.getElementById('totalIncome').innerText = formatCurrency(@Model.TotalIncome);
+    document.getElementById('totalExpense').innerText = formatCurrency(@Model.TotalExpense);
+    document.getElementById('totalBalance').innerText = formatCurrency(@Model.TotalBalance);
+
+    // Example data; replace with actual server-side data
+    const monthlyData = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        datasets: [{
+            label: 'Monthly Income',
+            data: [1200, 1500, 1700, 1400, 1600, 1800, 1900, 2100, 2000, 2200, 2300, 2500],
+            backgroundColor: 'rgba(40, 167, 69, 0.5)',
+            borderColor: '#28a745',
+            borderWidth: 1
+        }]
+    };
+
+    const yearlyData = {
+        labels: ['2022', '2023', '2024'],
+        datasets: [{
+            label: 'Yearly Income',
+            data: [25000, 27000, 29000],
+            backgroundColor: 'rgba(40, 167, 69, 0.5)',
+            borderColor: '#28a745',
+            borderWidth: 1
+        }]
+    };
+
+    const dailyData = {
+        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        datasets: [{
+            label: 'Daily Income',
+            data: [200, 250, 300, 150, 400, 350, 300],
+            backgroundColor: 'rgba(40, 167, 69, 0.5)',
+            borderColor: '#28a745',
+            borderWidth: 1
+        }]
+    };
+
+    // Monthly Chart
+    const ctxMonthly = document.getElementById('monthlyChart').getContext('2d');
+    new Chart(ctxMonthly, {
+        type: 'bar',
+        data: monthlyData,
+        options: {
+            responsive: true,
+            scales: {
+                x: { 
+                    beginAtZero: true 
+                },
+                y: { 
+                    beginAtZero: true 
+                }
+            }
+        }
+    });
+
+    // Yearly Chart
+    const ctxYearly = document.getElementById('yearlyChart').getContext('2d');
+    new Chart(ctxYearly, {
+        type: 'bar',
+        data: yearlyData,
+        options: {
+            responsive: true,
+            scales: {
+                x: { 
+                    beginAtZero: true 
+                },
+                y: { 
+                    beginAtZero: true 
+                }
+            }
+        }
+    });
+
+    // Daily Chart
+    const ctxDaily = document.getElementById('dailyChart').getContext('2d');
+    new Chart(ctxDaily, {
+        type: 'bar',
+        data: dailyData,
+        options: {
+            responsive: true,
+            scales: {
+                x: { 
+                    beginAtZero: true 
+                },
+                y: { 
+                    beginAtZero: true 
+                }
+            }
+        }
+    });
+
+    // Pie Chart Data (example)
+    const totalIncome = @Model.TotalIncome;
+    const totalExpense = @Model.TotalExpense;
+    const totalSavings = @Model.TotalBalance;
+
+    // Pie Chart for Income Distribution
+    const incomePieChart = document.getElementById('incomePieChart').getContext('2d');
+    new Chart(incomePieChart, {
+        type: 'pie',
+        data: {
+            labels: ['Salary', 'Investments', 'Other'],
+            datasets: [{
+                data: [totalIncome * 0.6, totalIncome * 0.3, totalIncome * 0.1],
+                backgroundColor: ['#28a745', '#20c997', '#17a2b8']
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Pie Chart for Expense Distribution
+    const expensePieChart = document.getElementById('expensePieChart').getContext('2d');
+    new Chart(expensePieChart, {
+        type: 'pie',
+        data: {
+            labels: ['Rent', 'Utilities', 'Groceries'],
+            datasets: [{
+                data: [totalExpense * 0.4, totalExpense * 0.3, totalExpense * 0.3],
+                backgroundColor: ['#dc3545', '#ffc107', '#28a745']
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    // Pie Chart for Savings Distribution
+    const savingsPieChart = document.getElementById('savingsPieChart').getContext('2d');
+    new Chart(savingsPieChart, {
+        type: 'pie',
+        data: {
+            labels: ['Emergency Fund', 'Investments', 'Others'],
+            datasets: [{
+                data: [totalSavings * 0.5, totalSavings * 0.3, totalSavings * 0.2],
+                backgroundColor: ['#28a745', '#007bff', '#ffc107']
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
